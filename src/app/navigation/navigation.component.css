@@ -1,0 +1,160 @@
+/*********************************
+4. Menu
+*********************************/
+
+.menu
+{
+	position: fixed;
+	top: 0;
+	left: -350px;
+	width: 350px;
+	height: 100vh;
+	background: #f8f8f8;
+	padding-left: 40px;
+	padding-top: 79px;
+	padding-right: 45px;
+	z-index: 101;
+	-webkit-transition: all 400ms ease;
+	-moz-transition: all 400ms ease;
+	-ms-transition: all 400ms ease;
+	-o-transition: all 400ms ease;
+	transition: all 400ms ease;
+}
+.menu.active
+{
+	left: 0;
+}
+.menu_search_form .search_input
+{
+	text-align: left;
+	padding-left: 25px;
+}
+.menu_nav ul li a
+{
+	position: relative;
+	font-size: 20px;
+    color: #2e2e2e;
+    font-weight: 400;
+}
+.menu_nav ul li a:hover
+{
+	color: #2fce98;
+}
+.menu_nav ul li a::after
+{
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 0%;
+	height: 2px;
+	background: #2fce98;
+	-webkit-transition: all 400ms ease;
+	-moz-transition: all 400ms ease;
+	-ms-transition: all 400ms ease;
+	-o-transition: all 400ms ease;
+	transition: all 400ms ease;
+	content: '';
+}
+.menu_nav ul li a:hover::after
+{
+	width: 100%;
+}
+.menu_contact
+{
+	position: absolute;
+	left: 40px;
+	bottom: 25px;
+}
+.menu_phone > div:first-child > div
+{
+	width: 18px;
+	height: 18px;
+}
+.menu_phone > div:last-child
+{
+	font-size: 14px;
+	font-weight: 700;
+	color: #4a4a4a;
+	padding-left: 16px;
+}
+.menu_social
+{
+	margin-top: 20px;
+}
+.menu_social_list li
+{
+	width: 33px;
+	height: 33px;
+	border-radius: 50%;
+	border: solid 2px #6d6d6d;
+	-webkit-transition: all 400ms ease;
+	-moz-transition: all 400ms ease;
+	-ms-transition: all 400ms ease;
+	-o-transition: all 400ms ease;
+	transition: all 400ms ease;
+}
+.menu_social_list li:not(:last-of-type)
+{
+	margin-right: 12px;
+}
+.menu_social_list li a
+{
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	-webkit-transition: all 400ms ease;
+	-moz-transition: all 400ms ease;
+	-ms-transition: all 400ms ease;
+	-o-transition: all 400ms ease;
+	transition: all 400ms ease;
+}
+.menu_social_list li a i
+{
+	line-height: 29px;
+	color: #6d6d6d;
+	font-size: 14px;
+	-webkit-transition: all 400ms ease;
+	-moz-transition: all 400ms ease;
+	-ms-transition: all 400ms ease;
+	-o-transition: all 400ms ease;
+	transition: all 400ms ease;
+}
+.menu_social_list li:hover
+{
+	border-color: #2fce98;
+}
+.menu_social_list li:hover a i
+{
+	color: #2fce98;
+}
+.menu_search
+{
+	margin-bottom: 48px;
+}
+.menu_search_form
+{
+	position: relative;
+}
+.menu_search_form > .search_input
+{
+	width: 100%;
+}
+.menu_search_button
+{
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+	right: 0;
+	width: 44px;
+	height: 39px;
+	border: none;
+	outline: none;
+	background: transparent;
+	cursor: pointer;
+}

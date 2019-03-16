@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -12,6 +13,7 @@ import { ProductsComponent } from './products/products.component';
 import { BoxesComponent } from './boxes/boxes.component';
 import { FeaturesComponent } from './features/features.component';
 import { SliderComponent } from './home/slider/slider.component';
+import { LoginmodalComponent } from './header/loginmodal/loginmodal.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +27,15 @@ import { SliderComponent } from './home/slider/slider.component';
     ProductsComponent,
     BoxesComponent,
     FeaturesComponent,
-    SliderComponent
+    SliderComponent,
+    LoginmodalComponent
+  ],
+  entryComponents:[
+    LoginmodalComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    NgbModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

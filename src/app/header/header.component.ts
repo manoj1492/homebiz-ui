@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginmodalComponent } from './loginmodal/loginmodal.component';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,10 @@ import { LoginmodalComponent } from './loginmodal/loginmodal.component';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private modalService: NgbModal) { }
+  headerSearchForm:FormGroup;
+  constructor(private modalService: NgbModal) {
+      this.headerSearchForm = new FormGroup({});
+  }
 
   ngOnInit() {
   }

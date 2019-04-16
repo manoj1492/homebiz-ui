@@ -51,7 +51,7 @@
           <div class="footer_contact">
             <div class="footer_title">Stay in Touch</div>
             <div class="newsletter">
-              <form action="#" id="newsletter_form" class="newsletter_form">
+              <form id="newsletter_form" class="newsletter_form" [formGroup] = "newsLetterForm">
                 <input type="email" class="newsletter_input" placeholder="Subscribe to our Newsletter" required="required">
                 <button class="newsletter_button">+</button>
               </form>

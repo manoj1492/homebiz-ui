@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-navigation',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  menuSearchForm: FormGroup;
+  constructor() {
+    this.menuSearchForm = new FormGroup({});
+  }
 
   ngOnInit() {
   }

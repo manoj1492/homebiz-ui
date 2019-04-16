@@ -24,7 +24,7 @@
     <div class="header_right d-flex flex-row align-items-center justify-content-start ml-auto">
       <!-- Search -->
       <div class="header_search">
-        <form action="#" id="header_search_form">
+        <form id="header_search_form" [formGroup] = "headerSearchForm">
           <input type="text" class="search_input" placeholder="Search Item" required="required">
           <button class="header_search_button"><img src="../assets/images/search.png" alt=""></button>
         </form>

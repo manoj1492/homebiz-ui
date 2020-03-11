@@ -1,0 +1,45 @@
+<!-- <form [formGroup] = "loginForm" (ngSubmit) = "login()">
+  <div class="modal-header">
+    <a *ngIf="!showLoginForm" href="#" (click)="toggleShowLoginForm()" onclick="return false"><h4 class="modal-title">Login</h4></a>
+    <a *ngIf="showLoginForm" class = "disabled"><h4 class="modal-title">Login</h4></a>
+    <a *ngIf="showLoginForm" href="" (click)="toggleShowLoginForm()" onclick="return false"><h4 class="modal-title">Signup</h4></a>
+    <a *ngIf="!showLoginForm" class = "disabled"><h4 class="modal-title">Signup</h4></a>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body container" *ngIf="showLoginForm">
+    <div class="row">
+      <div class="col-sm-4">
+        <input type="text" formControlName="username" placeholder = "Username" value=""><br />
+        <input type="password" formControlName="password" placeholder = "Password" value="">
+      </div>
+      <div class="col-sm-4">
+        <button type="button">Login with Facebook</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-body" *ngIf="!showLoginForm">
+    <div id = "wrapper_1">
+      <input type="text"  class="form_input" formControlName="username" placeholder = "Username" value=""><br />
+      <input type="password"  class = "form_input" formControlName="password" placeholder = "Password" value="">
+    </div>
+    <div id = "wrapper_2">
+      <button type="button">Sign Up with Facebook</button>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-dark">Login</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+  </div>
+</form> -->
+
+<div class="example-container">
+	<mat-form-field>
+		<input matInput placeholder="Username">
+  </mat-form-field>
+<br>
+  <mat-form-field>
+    <input matInput type= "password" placeholder="Password">
+  </mat-form-field>
+</div>

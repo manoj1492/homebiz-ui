@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule, MatDialogModule } from '@angular/material';
 import { RouterModule} from '@angular/router';
@@ -20,6 +20,7 @@ import { FeaturesComponent } from './features/features.component';
 import { SliderComponent } from './home/slider/slider.component';
 import { DialogComponent } from './header/dialog/dialog.component';
 import { DialogModule } from './header/dialog/dialog.module';
+import { InterceptorService } from './interceptor.service';
 
 
 @NgModule({
@@ -55,7 +56,7 @@ import { DialogModule } from './header/dialog/dialog.module';
       { path: 'dialog', component: DialogComponent }
     ])
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

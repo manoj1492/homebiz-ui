@@ -33,13 +33,26 @@
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
   </div>
 </form> -->
-
-<div class="example-container">
-	<mat-form-field>
-		<input matInput placeholder="Username">
-  </mat-form-field>
-<br>
-  <mat-form-field>
-    <input matInput type= "password" placeholder="Password">
-  </mat-form-field>
+<form [formGroup] = "loginForm">
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <mat-form-field>
+        <input matInput placeholder="Username" formControlName="username">
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <input matInput type="password" placeholder="Password" formControlName="password">
+      </mat-form-field>
+      <br />
+      <button mat-raised-button (click)="login()">Login</button>
+    </div>
+    <div class="col-sm-6">
+      <br />
+      <button mat-raised-button class="icon-google">Login With Google <img class = "fill" src="../assets/images/logo-google.svg" alt=""></button>
+      <br /><br />
+      <button mat-raised-button class="icon-facebook">Login With Facebook <img class = "fill" src="../assets/images/logo-facebook.svg" alt=""></button>
+    </div>
+  </div>
 </div>
+</form>

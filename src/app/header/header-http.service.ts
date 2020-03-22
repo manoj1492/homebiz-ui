@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginModel } from './dialog/login/login-model';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
@@ -9,10 +9,15 @@ import { Router } from '@angular/router';
 })
 export class HeaderHttpService {
 
+  private headers: HttpHeaders;
+
   constructor(private http: HttpClient, private router: Router) { }
 
   isAuthenticated(loginModel: LoginModel): boolean{
-    var obs = this.http.post("http://localhost:8080/auth/isAuthenticated", loginModel)
+    this.headers = new HttpHeaders({'authenticationType': 'Normal'});
+    var obs = this.http.post("http://localhost:8082/auth/authenticate", loginModel,{
+        headers: this.headers
+      })
     obs.subscribe(
       (response) => {
         this.setSession(response);
@@ -32,7 +37,7 @@ export class HeaderHttpService {
   private setSession(authResult) {
         const expiresAt = moment().add(authResult.expiresIn,'second');
 
-        localStorage.setItem('authToken', authResult.authToken);
+        localStorage.setItem('authToken', authResult.token);
         localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
     }
 

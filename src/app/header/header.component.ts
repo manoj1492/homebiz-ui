@@ -1,9 +1,9 @@
-import { FormGroup, FormControl } from '@angular/forms';
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterLinkActive, Routes } from '@angular/router';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { DialogComponent } from './dialog/dialog.component';
-import { DialogModule } from './dialog/dialog.module';
+import {FormGroup} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material';
+import {DialogComponent} from './dialog/dialog.component';
+import {HeaderHttpService} from './header-http.service';
 
 @Component({
   selector: 'app-header',
@@ -12,25 +12,37 @@ import { DialogModule } from './dialog/dialog.module';
 })
 export class HeaderComponent implements OnInit {
 
-  headerSearchForm:FormGroup;
-  constructor(public dialog: MatDialog, private router: Router) {
+  headerSearchForm: FormGroup;
+  constructor(public dialog: MatDialog, private router: Router, private headerHttpService: HeaderHttpService) {
       this.headerSearchForm = new FormGroup({});
   }
 
   ngOnInit() {
   }
 
-  open(){
-    let dialogRef = this.dialog.open(DialogComponent, {
+  open() {
+    const dialogRef = this.dialog.open(DialogComponent, {
       width: '500px',
       position: {
         top: '10vh'
       },
     });
-  this.router.navigate(['dialog/login'])
+    this.router.navigate(['dialog/login']);
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  isLoggedIn() {
+    return this.headerHttpService.isLoggedIn();
+  }
+
+  getLoggedInUserName() {
+    return this.headerHttpService.getLoggedInUserName();
+  }
+
+  logout() {
+    this.headerHttpService.logout();
   }
 
 }

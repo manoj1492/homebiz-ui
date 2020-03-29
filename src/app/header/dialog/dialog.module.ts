@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatDialogRef } from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
@@ -97,6 +97,11 @@ import { SignupComponent } from './signup/signup.component';
     ]),
 
 
+  ],
+  providers: [
+    {
+      provide: MatDialogRef, useValue: {}
+    }
   ],
   declarations: [LoginComponent, SignupComponent, DialogComponent, SignupComponent],
   exports: [

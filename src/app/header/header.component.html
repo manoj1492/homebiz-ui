@@ -1,4 +1,4 @@
-	<!-- Header -->
+<!-- Header -->
 
 <header class="header">
   <div class="header_overlay"></div>
@@ -30,15 +30,22 @@
         </form>
       </div>
       <!-- User -->
-      <div class="user" *ngIf="isLoggedIn()"><a href="" (click)="open()" onclick="return false" >Login & SignUp</a></div>
+      <div class="user" *ngIf="!isLoggedIn()"><a href="" (click)="open()" onclick="return false" >Login & SignUp</a></div>
       <!-- TODO: Display this icon for account details after login -->
       <!-- <div class="user"><a href="#"><div><img src="../assets/images/user.svg" alt="https://www.flaticon.com/authors/freepik"><div>1</div></div></a></div> -->
       <!-- Cart -->
       <div class="cart"><a href="cart.html"><div><img class="cart_svg" src="../assets/images/cart.svg" alt="https://www.flaticon.com/authors/freepik"></div></a></div>
       <!-- Phone -->
       <div class="header_phone d-flex flex-row align-items-center justify-content-start">
-        <div><div><img src="../assets/images/phone.svg" alt="https://www.flaticon.com/authors/freepik"></div></div>
-        <div>+1 912-252-7350</div>
+        <!--<div><div><img src="../assets/images/phone.svg" alt="https://www.flaticon.com/authors/freepik"></div></div>-->
+        <mat-menu #appMenu="matMenu">
+          <button mat-menu-item>Settings</button>
+          <button mat-menu-item>Help</button>
+          <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+        <div *ngIf="isLoggedIn()" [matMenuTriggerFor]="appMenu">
+          {{getLoggedInUserName()}}<mat-icon>keyboard_arrow_down</mat-icon>
+        </div>
       </div>
     </div>
   </div>

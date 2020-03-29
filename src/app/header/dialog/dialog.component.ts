@@ -1,16 +1,15 @@
-import { Component, Inject, Optional } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router, RouterLinkActive, Routes } from '@angular/router';
+import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router, RouterLinkActive, Routes} from '@angular/router';
 
 
 @Component({
-  selector: 'dialog-component',
   templateUrl: 'dialog.component.html',
 })
-export class DialogComponent implements OnInit, OnDestroy {
+export class DialogComponent implements OnInit, OnDestroy, AfterViewInit {
 
   selectedIndex: number;
+  isViewInitialized = false;
+  navLinks = [];
 
 
   onNoClick(): void {
@@ -22,16 +21,12 @@ export class DialogComponent implements OnInit, OnDestroy {
     console.log('this is selected index: ', val);
   }
 
-  isViewInitialized = false;
-
-  navLinks = [];
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private changeDetector: ChangeDetectorRef
     // public dialogRef: MatDialogRef<DialogComponent>,
-    //@Optional() @Inject(MAT_DIALOG_DATA) public data: any
+    // @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit() {

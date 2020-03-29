@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LoginModel } from './dialog/login/login-model';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {LoginModel} from './dialog/login/login-model';
 import * as moment from 'moment';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {Moment} from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,53 +12,53 @@ import { Router } from '@angular/router';
 export class HeaderHttpService {
 
   private headers: HttpHeaders;
+  constructor(private http: HttpClient, private router: Router) {
+  }
 
-  constructor(private http: HttpClient, private router: Router) { }
-
-  isAuthenticated(loginModel: LoginModel): boolean{
+  public authenticateUser(loginModel: LoginModel): Observable<any> {
     this.headers = new HttpHeaders({'authenticationType': 'Normal'});
-    var obs = this.http.post("http://localhost:8082/auth/authenticate", loginModel,{
-        headers: this.headers
-      })
-    obs.subscribe(
-      (response) => {
-        this.setSession(response);
-        this.router.navigate(['']);
-      },
-      (error) => {
-        console.log(error);
-      }
-    )
-    return false;
+    return this.http.post('http://localhost:8082/auth/authenticate', loginModel, {
+      headers: this.headers
+    });
   }
 
-  getAuthToken(){
-    return localStorage.getItem("authToken");
+  public getAuthToken() {
+    return localStorage.getItem('authToken');
   }
 
-  private setSession(authResult) {
-        const expiresAt = moment().add(authResult.expiresIn,'second');
+  public setSession(authResult) {
+    const expiresAt = moment(authResult.expiresIn);
+    console.log(expiresAt);
+    localStorage.setItem('authToken', authResult.token);
+    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+  }
 
-        localStorage.setItem('authToken', authResult.token);
-        localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
-    }
+  public logout() {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('expires_at');
+    localStorage.removeItem('loggedInUserName');
+  }
 
-    logout() {
-        localStorage.removeItem("authToken");
-        localStorage.removeItem("expires_at");
-    }
+  public isLoggedIn(): boolean{
+      const isLoggedIn = moment().isBefore(this.getExpiration());
+      return isLoggedIn;
+  }
 
-    public isLoggedIn() {
-        return moment().isBefore(this.getExpiration());
-    }
+  public isLoggedOut() {
+    return !this.isLoggedIn();
+  }
 
-    isLoggedOut() {
-        return !this.isLoggedIn();
-    }
+  public getExpiration(): Moment {
+    const expiration = localStorage.getItem('expires_at');
+    const expiresAt = JSON.parse(expiration);
+    return moment(expiresAt);
+  }
 
-    getExpiration() {
-        const expiration = localStorage.getItem("expires_at");
-        const expiresAt = JSON.parse(expiration);
-        return moment(expiresAt);
-    }
+  public getLoggedInUserName(): String {
+    return localStorage.getItem('loggedInUserName');
+  }
+
+  public setLoggedInUserName(username): void {
+    localStorage.setItem('loggedInUserName', username);
+  }
 }
